@@ -52,6 +52,7 @@ public class SysDictTypeServiceImpl implements ISysDictTypeService
     @Override
     public List<SysDictType> selectDictTypeList(SysDictType dictType)
     {
+
         return dictTypeMapper.selectDictTypeList(dictType);
     }
 
