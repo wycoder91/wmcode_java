@@ -99,7 +99,10 @@
             <version>3.3.0</version>
             <scope>compile</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>machine</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
