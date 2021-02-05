@@ -72,6 +72,20 @@ public class BaseController
         rspData.setTotal(new PageInfo(list).getTotal());
         return rspData;
     }
+    //分页请求 wenmc、
+    protected TableDataInfo getDataTableWen(List<?> list1,List<?> list2)
+    {
+        TableDataInfo rspData = new TableDataInfo();
+        rspData.setCode(HttpStatus.SUCCESS);
+        rspData.setMsg("查询成功");
+        rspData.setRows(list1);
+        rspData.setTotal(new PageInfo(list2).getTotal());
+        return rspData;
+    }
+
+
+
+
 
     /**
      * 响应返回结果

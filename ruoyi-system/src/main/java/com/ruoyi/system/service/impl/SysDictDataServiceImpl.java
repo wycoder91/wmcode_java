@@ -28,6 +28,7 @@ public class SysDictDataServiceImpl implements ISysDictDataService
     @Override
     public List<SysDictData> selectDictDataList(SysDictData dictData)
     {
+        List<SysDictData> ss=dictDataMapper.selectDictDataList(dictData);
         return dictDataMapper.selectDictDataList(dictData);
     }
 

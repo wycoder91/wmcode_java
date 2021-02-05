@@ -41,6 +41,7 @@ public class SysDictTypeController extends BaseController
     {
         startPage();
         List<SysDictType> list = dictTypeService.selectDictTypeList(dictType);
+        TableDataInfo ww=getDataTable(list);
         return getDataTable(list);
     }
 
