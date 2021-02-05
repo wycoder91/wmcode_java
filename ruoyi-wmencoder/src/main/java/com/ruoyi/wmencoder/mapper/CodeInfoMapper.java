@@ -58,4 +58,17 @@ public interface CodeInfoMapper
      * @return 结果
      */
     public int deleteCodeInfoByIds(Long[] coderIds);
+
+    /**
+     * 查询wmcode_info表所有项到集合
+     * @return
+     */
+    public List<CodeInfo> selectCodeInfoListForGenerate(String coderCode);
+
+    /**
+     * 由详细配置描述loaderInfo查询对应集合
+     * @param loaderInfo
+     * @return
+     */
+    public List<CodeInfo> selectCodeInfoListForSearch(String loaderInfo);
 }

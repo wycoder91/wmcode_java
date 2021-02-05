@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.wmencoder.mapper.base.UpgradeMapper">
+
+    <resultMap id="Upgrade" type="com.ruoyi.wmencoder.domain.base.Upgrade">
+        <id column="id" property="id"></id>
+        <result column="description" property="description"></result>
+        <result column="code_num" property="codeNum"></result>
+    </resultMap>
+
+    <insert id="create" keyProperty="id" useGeneratedKeys="true" parameterType="com.ruoyi.wmencoder.domain.base.Upgrade">
+        insert into tb_upgrade(description,code_num)
+        values(#{description},#{codeNum})
+    </insert>
+
+    <delete id="delete">
+        delete from tb_upgrade where id=#{id}
+    </delete>
+
+    <update id="update">
+        update tb_upgrade set description = #{description},code_num = #{codeNum} where id = #{id}
+    </update>
+
+    <select id="query" resultMap="Upgrade">
+        select * from tb_upgrade
+    </select>
+
+    <select id="detail" resultMap="Upgrade">
+        select * from tb_upgrade where id = #{id}
+    </select>
+</mapper>

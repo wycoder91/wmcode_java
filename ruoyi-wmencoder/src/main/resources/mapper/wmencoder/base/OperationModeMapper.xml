@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.wmencoder.mapper.base.OperationModeMapper">
+
+    <resultMap id="OperationMode" type="com.ruoyi.wmencoder.domain.base.OperationMode">
+        <id column="id" property="id"></id>
+        <result column="description" property="description"></result>
+        <result column="code_num" property="codeNum"></result>
+    </resultMap>
+
+    <insert id="create" keyProperty="id" useGeneratedKeys="true" parameterType="com.ruoyi.wmencoder.domain.base.OperationMode">
+        insert into tb_operation_mode(description,code_num)
+        values(#{description},#{codeNum})
+    </insert>
+
+    <delete id="delete">
+        delete from tb_operation_mode where id=#{id}
+    </delete>
+
+    <update id="update">
+        update tb_operation_mode set description = #{description},code_num = #{codeNum} where id = #{id}
+    </update>
+
+    <select id="query" resultMap="OperationMode">
+        select * from tb_operation_mode
+    </select>
+
+    <select id="detail" resultMap="OperationMode">
+        select * from tb_operation_mode where id = #{id}
+    </select>
+</mapper>

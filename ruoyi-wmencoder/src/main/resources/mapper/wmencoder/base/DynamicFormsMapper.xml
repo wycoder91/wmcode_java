@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.wmencoder.mapper.base.DynamicFormsMapper">
+
+    <resultMap id="DynamicForms" type="com.ruoyi.wmencoder.domain.base.DynamicForms">
+        <id column="id" property="id"></id>
+        <result column="description" property="description"></result>
+        <result column="code_num" property="codeNum"></result>
+    </resultMap>
+
+    <insert id="create" keyProperty="id" useGeneratedKeys="true" parameterType="com.ruoyi.wmencoder.domain.base.DynamicForms">
+        insert into tb_dynamic_forms(description,code_num)
+        values(#{description},#{codeNum})
+    </insert>
+
+    <delete id="delete">
+        delete from tb_dynamic_forms where id=#{id}
+    </delete>
+
+    <update id="update">
+        update tb_dynamic_forms set description = #{description},code_num = #{codeNum} where id = #{id}
+    </update>
+
+    <select id="query" resultMap="DynamicForms">
+        select * from tb_dynamic_forms
+    </select>
+
+    <select id="detail" resultMap="DynamicForms">
+        select * from tb_dynamic_forms where id = #{id}
+    </select>
+</mapper>

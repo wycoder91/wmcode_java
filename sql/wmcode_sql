@@ -1,9 +1,0 @@
-drop table if exists wmcode_info;
-create table wmcode_info (
-                             coder_id        bigint(20)      not null auto_increment    comment '编码id',
-                             coder_coder     varchar(30)      default 0             comment '编码号',
-                             loader_name     varchar(30)     default ''                comment '装载机简称',
-                             loader_info     varchar(200)     default ''               comment '装载机详细配置信息',
-                             status            char(1)         default '0'              comment '状态（0正常 1停用）',
-                             primary key (coder_id)
-) engine=innodb auto_increment=1 comment = '整机编码表';

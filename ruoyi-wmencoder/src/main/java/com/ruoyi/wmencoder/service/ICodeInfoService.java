@@ -2,6 +2,7 @@ package com.ruoyi.wmencoder.service;
 
 import java.util.List;
 import com.ruoyi.wmencoder.domain.CodeInfo;
+import com.ruoyi.wmencoder.domain.ConfigInfoRcv;
 
 /**
  * 整机编码Service接口
@@ -58,4 +59,23 @@ public interface ICodeInfoService
      * @return 结果
      */
     public int deleteCodeInfoById(Long coderId);
+
+    /**
+     * 查询wmcode_info表所有项到集合
+     * @return
+     */
+    public List<CodeInfo> selectCodeInfoListForGenerate(String coderCode);
+    /**
+     * 生成整机码及其描述
+     * @param configInfoRcv
+     * @return
+     */
+    public CodeInfo generateWmCode(ConfigInfoRcv configInfoRcv);
+    /**
+     * 由详细配置描述loaderInfo查询对应集合
+     * @param configInfoRcv
+     * @return
+     */
+    public CodeInfo searchWmCodeBy(ConfigInfoRcv configInfoRcv);
+
 }

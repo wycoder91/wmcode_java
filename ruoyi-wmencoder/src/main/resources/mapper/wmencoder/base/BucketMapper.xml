@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.wmencoder.mapper.base.BucketMapper">
+
+    <resultMap id="Bucket" type="com.ruoyi.wmencoder.domain.base.Bucket">
+        <id column="id" property="id"></id>
+        <result column="description" property="description"></result>
+        <result column="code_num" property="codeNum"></result>
+    </resultMap>
+
+    <insert id="create" keyProperty="id" useGeneratedKeys="true" parameterType="com.ruoyi.wmencoder.domain.base.Bucket">
+        insert into tb_bucket(description,code_num)
+        values(#{description},#{codeNum})
+    </insert>
+
+    <delete id="delete">
+        delete from tb_bucket where id=#{id}
+    </delete>
+
+    <update id="update">
+        update tb_bucket set description = #{description},code_num = #{codeNum} where id = #{id}
+    </update>
+
+    <select id="query" resultMap="Bucket">
+        select * from tb_bucket
+    </select>
+
+    <select id="detail" resultMap="Bucket">
+        select * from tb_bucket where id = #{id}
+    </select>
+</mapper>

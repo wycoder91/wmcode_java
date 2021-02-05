@@ -7,7 +7,9 @@ import com.ruoyi.common.core.page.TableDataInfo;
 import com.ruoyi.common.enums.BusinessType;
 import com.ruoyi.common.utils.poi.ExcelUtil;
 import com.ruoyi.wmencoder.domain.CodeInfo;
+import com.ruoyi.wmencoder.domain.ConfigInfoRcv;
 import com.ruoyi.wmencoder.service.ICodeInfoService;
+import com.ruoyi.wmencoder.utils.WmCodeGenerate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -39,6 +41,16 @@ public class CodeInfoController extends BaseController
         return getDataTable(list);
     }
 
+    /**
+     * 查询是否有对应配置项
+     * @param configInfoRcv
+     * @return
+     */
+    @PostMapping("/codeInfo")
+    public CodeInfo searchWmCode(@RequestBody ConfigInfoRcv configInfoRcv){
+        return codeInfoService.searchWmCodeBy(configInfoRcv);
+    }
+    
     /**
      * 导出整机编码列表
      */

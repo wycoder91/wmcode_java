@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
 
     <sql id="selectCodeInfoVo">
-        select coder_id, coder_code, loader_name, loader_info, status from wmcode_info
+        select * from wmcode_info
     </sql>
 
     <select id="selectCodeInfoList" parameterType="CodeInfo" resultMap="CodeInfoResult">
@@ -25,7 +25,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="status != null  and status != ''"> and status = #{status}</if>
         </where>
     </select>
-    
+
+    <select id="selectCodeInfoListForGenerate" parameterType="String" resultMap="CodeInfoResult">
+        <include refid="selectCodeInfoVo"/>
+        <where>
+            <if test="coderCode != null  and coderCode != ''"> and coder_code like concat(#{coderCode}, '%')</if>
+        </where>
+    </select>
+
     <select id="selectCodeInfoById" parameterType="Long" resultMap="CodeInfoResult">
         <include refid="selectCodeInfoVo"/>
         where coder_id = #{coderId}
