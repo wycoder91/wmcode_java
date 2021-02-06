@@ -42,6 +42,7 @@ public class MaDouController extends BaseController
     {
         startPage();
         List<MaDou> list = maDouService.selectMaDouList(maDou);
+        TableDataInfo dd=getDataTable(list);
         return getDataTable(list);
     }
 
