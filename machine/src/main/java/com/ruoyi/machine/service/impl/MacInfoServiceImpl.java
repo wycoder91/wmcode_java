@@ -5,25 +5,25 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.machine.mapper.MacInfoMapper;
+import com.ruoyi.machine.mapper.ReMacInfoMapper;
 import com.ruoyi.machine.domain.MacInfo;
 import com.ruoyi.machine.service.IMacInfoService;
-import com.ruoyi.machine.mapper.ProductTypeMapper;
-import com.ruoyi.machine.mapper.TransStyleMapper;
-import com.ruoyi.machine.mapper.TonnageMapper;
-import com.ruoyi.machine.mapper.WheelMapper;
-import com.ruoyi.machine.mapper.SpecialMapper;
-import com.ruoyi.machine.mapper.DynamicFormsMapper;
-import com.ruoyi.machine.mapper.DischargeMapper;
-import com.ruoyi.machine.mapper.UpgradeMapper;
-import com.ruoyi.machine.mapper.FormatMapper;
-import com.ruoyi.machine.mapper.EngineMapper;
-import com.ruoyi.machine.mapper.TransmissionMapper;
-import com.ruoyi.machine.mapper.BoomMapper;
-import com.ruoyi.machine.mapper.BucketMapper;
-import com.ruoyi.machine.mapper.OperationModeMapper;
-import com.ruoyi.machine.mapper.OptionalMapper;
-import com.ruoyi.machine.mapper.SaleMapper;
+import com.ruoyi.machine.mapper.ReProductTypeMapper;
+import com.ruoyi.machine.mapper.ReTransStyleMapper;
+import com.ruoyi.machine.mapper.ReTonnageMapper;
+import com.ruoyi.machine.mapper.ReWheelMapper;
+import com.ruoyi.machine.mapper.ReSpecialMapper;
+import com.ruoyi.machine.mapper.ReDynamicFormsMapper;
+import com.ruoyi.machine.mapper.ReDischargeMapper;
+import com.ruoyi.machine.mapper.ReUpgradeMapper;
+import com.ruoyi.machine.mapper.ReFormatMapper;
+import com.ruoyi.machine.mapper.ReEngineMapper;
+import com.ruoyi.machine.mapper.ReTransmissionMapper;
+import com.ruoyi.machine.mapper.ReBoomMapper;
+import com.ruoyi.machine.mapper.ReBucketMapper;
+import com.ruoyi.machine.mapper.ReOperationModeMapper;
+import com.ruoyi.machine.mapper.ReOptionalMapper;
+import com.ruoyi.machine.mapper.ReSaleMapper;
 
 
 /**
@@ -35,39 +35,39 @@ import com.ruoyi.machine.mapper.SaleMapper;
 @Service
 public class MacInfoServiceImpl implements IMacInfoService {
     @Autowired
-    private MacInfoMapper macInfoMapper;
+    private ReMacInfoMapper macInfoMapper;
     @Autowired
-    private ProductTypeMapper productMapper;//1
+    private ReProductTypeMapper productMapper;//1
     @Autowired
-    private TransStyleMapper transMapper;//2
+    private ReTransStyleMapper transMapper;//2
     @Autowired
-    private TonnageMapper tonnageMapper;//3
+    private ReTonnageMapper tonnageMapper;//3
     @Autowired
-    private WheelMapper wheelMapper;//4
+    private ReWheelMapper wheelMapper;//4
     @Autowired
-    private SpecialMapper specialMapper;//5
+    private ReSpecialMapper specialMapper;//5
     @Autowired
-    private DynamicFormsMapper dynamicMapper;//6
+    private ReDynamicFormsMapper dynamicMapper;//6
     @Autowired
-    private DischargeMapper dischargeMapper;//7
+    private ReDischargeMapper dischargeMapper;//7
     @Autowired
-    private UpgradeMapper upgradeMapper;//8
+    private ReUpgradeMapper upgradeMapper;//8
     @Autowired
-    private FormatMapper formatMapper;//9'10
+    private ReFormatMapper formatMapper;//9'10
     @Autowired
-    private EngineMapper engineMapper;//11
+    private ReEngineMapper engineMapper;//11
     @Autowired
-    private TransmissionMapper transmissionMapper;//12
+    private ReTransmissionMapper transmissionMapper;//12
     @Autowired
-    private BoomMapper boomMapper;//13
+    private ReBoomMapper boomMapper;//13
     @Autowired
-    private BucketMapper bucketMapper;//14
+    private ReBucketMapper bucketMapper;//14
     @Autowired
-    private OperationModeMapper operationModeMapper;//15
+    private ReOperationModeMapper operationModeMapper;//15
     @Autowired
-    private SaleMapper saleMapper;//16
+    private ReSaleMapper saleMapper;//16
     @Autowired
-    private OptionalMapper optionalMapper;//17'18
+    private ReOptionalMapper optionalMapper;//17'18
 
 
     /**

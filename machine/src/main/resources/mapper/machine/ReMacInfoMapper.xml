@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.machine.mapper.ReMacInfoMapper">
+    
+    <resultMap type="MacInfo" id="MacInfoResult">
+        <result property="maId"    column="ma_id"    />
+        <result property="maCode"    column="ma_code"    />
+        <result property="maName"    column="ma_name"    />
+        <result property="maDes"    column="ma_des"    />
+        <result property="maType"    column="ma_type"    />
+        <result property="maOptional"  column="ma_optional"    />
+        <result property="maCreater"  column="ma_Creater"    />
+        <result property="maNote1"    column="ma_note1"    />
+        <result property="maNote2"    column="ma_note2"    />
+    </resultMap>
+
+    <sql id="selectMacInfoVo">
+        select ma_id,ma_code, ma_name, ma_des, ma_type, ma_optional, ma_creater,ma_note1, ma_note2 from mac_info
+    </sql>
+
+    <select id="selectMacInfoList" parameterType="MacInfo" resultMap="MacInfoResult">
+        <include refid="selectMacInfoVo"/>
+        <where>
+            <if test="maCode != null  and maCode != ''"> and ma_code like concat('%', #{maCode}, '%')</if>
+            <if test="maName != null  and maName != ''"> and ma_name like concat('%', #{maName}, '%')</if>
+            <if test="maType != null and maType != ''" > and ma_type = #{maType}</if>
+            <if test="maOptional != null  and maOptional != ''"> and ma_optional like concat('%', #{maOptional}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectMacInfoById" parameterType="Long" resultMap="MacInfoResult">
+        <include refid="selectMacInfoVo"/>
+        where ma_id = #{maId}
+    </select>
+        
+    <insert id="insertMacInfo" parameterType="MacInfo" useGeneratedKeys="true" keyProperty="maId">
+        insert into mac_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="maCode != null and maCode != ''">ma_code,</if>
+            <if test="maName != null and maName != ''">ma_name,</if>
+            <if test="maDes != null">ma_des,</if>
+            <if test="maType != null">ma_type,</if>
+            <if test="maOptional != null and maOptional != ''">ma_optional,</if>
+            <if test="maCreater != null ">ma_creater,</if>
+            <if test="maNote1 != null">ma_note1,</if>
+            <if test="maNote2 != null">ma_note2,</if>
+            ma_createDate
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="maCode != null and maCode != ''">#{maCode},</if>
+            <if test="maName != null and maName != ''">#{maName},</if>
+            <if test="maDes != null">#{maDes},</if>
+            <if test="maType != null">#{maType},</if>
+            <if test="maOptional != null and maOptional != ''">#{maOptional},</if>
+            <if test="maCreater != null ">#{maCreater},</if>
+            <if test="maNote1 != null">#{maNote1},</if>
+            <if test="maNote2 != null">#{maNote2},</if>
+            sysdate()
+         </trim>
+    </insert>
+
+    <update id="updateMacInfo" parameterType="MacInfo">
+        update mac_info
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="maCode != null and maCode != ''">ma_code = #{maCode},</if>
+            <if test="maName != null and maName != ''">ma_name = #{maName},</if>
+            <if test="maDes != null">ma_des = #{maDes},</if>
+            <if test="maType != null and maType != ''">ma_type = #{maType},</if>
+            <if test="maOptional != null and maOptional !=''">ma_optional = #{maOptional},</if>
+            <if test="maUpdater != null">ma_updater = #{maUpdater},</if>
+            <if test="maNote1 != null">ma_note1 = #{maNote1},</if>
+            <if test="maNote2 != null">ma_note2 = #{maNote2},</if>
+            ma_update = sysdate()
+        </trim>
+        where ma_id = #{maId}
+    </update>
+
+    <delete id="deleteMacInfoById" parameterType="Long">
+        delete from mac_info where ma_id = #{maId}
+    </delete>
+
+    <delete id="deleteMacInfoByIds" parameterType="String">
+        delete from mac_info where ma_id in 
+        <foreach item="maId" collection="array" open="(" separator="," close=")">
+            #{maId}
+        </foreach>
+    </delete>
+
+
+
+
+
+
+    
+</mapper>

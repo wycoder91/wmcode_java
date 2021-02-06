@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.machine.mapper.ReMaDouMapper">
+    
+    <resultMap type="MaDou" id="MaDouResult">
+        <result property="maId"    column="ma_id"    />
+        <result property="maCode"    column="ma_code"    />
+        <result property="maName"    column="ma_name"    />
+        <result property="maDoucode"    column="ma_douCode"    />
+        <result property="maDouname"    column="ma_douName"    />
+        <result property="maDoucontent"    column="ma_douContent"    />
+        <result property="maNote1"    column="ma_note1"    />
+        <result property="maNote2"    column="ma_note2"    />
+    </resultMap>
+
+    <sql id="selectMaDouVo">
+        select ma_id, ma_code, ma_name, ma_douCode, ma_douName, ma_douContent, ma_note1, ma_note2 from ma_dou
+    </sql>
+
+    <select id="selectMaDouList" parameterType="MaDou" resultMap="MaDouResult">
+        <include refid="selectMaDouVo"/>
+        <where>  
+            <if test="maCode != null  and maCode != ''"> and ma_code = #{maCode}</if>
+            <if test="maDoucode != null  and maDoucode != ''"> and ma_douCode = #{maDoucode}</if>
+            <if test="maDoucontent != null  and maDoucontent != ''"> and ma_douContent like concat('%', #{maDoucontent}, '%') </if>
+        </where>
+        order by ma_code, ma_douCode
+    </select>
+    
+    <select id="selectMaDouById" parameterType="Long" resultMap="MaDouResult">
+        <include refid="selectMaDouVo"/>
+        where ma_id = #{maId}
+    </select>
+        
+    <insert id="insertMaDou" parameterType="MaDou" useGeneratedKeys="true" keyProperty="maId">
+        insert into ma_dou
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="maCode != null">ma_code,</if>
+            <if test="maName != null">ma_name,</if>
+            <if test="maDoucode != null">ma_douCode,</if>
+            <if test="maDouname != null">ma_douName,</if>
+            <if test="maDoucontent != null">ma_douContent,</if>
+            <if test="maNote1!= null">ma_note1,</if>
+            <if test="maNote2 != null">ma_note2,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="maCode != null">#{maCode},</if>
+            <if test="maName != null">#{maName},</if>
+            <if test="maDoucode != null">#{maDoucode},</if>
+            <if test="maDouname != null">#{maDouname},</if>
+            <if test="maDoucontent != null">#{maDoucontent},</if>
+            <if test="maNote1 != null">#{maNote1},</if>
+            <if test="maNote2 != null">#{maNote2},</if>
+         </trim>
+    </insert>
+
+    <update id="updateMaDou" parameterType="MaDou">
+        update ma_dou
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="maCode != null">ma_code = #{maCode},</if>
+            <if test="maName != null">ma_name = #{maName},</if>
+            <if test="maDoucode != null">ma_douCode = #{maDoucode},</if>
+            <if test="maDouname != null">ma_douName = #{maDouname},</if>
+            <if test="maDoucontent != null">ma_douContent = #{maDoucontent},</if>
+            <if test="maNote1 != null">ma_note1 = #{maNote1},</if>
+            <if test="maNote2 != null">ma_note2 = #{maNote2},</if>
+        </trim>
+        where ma_id = #{maId}
+    </update>
+
+    <delete id="deleteMaDouById" parameterType="Long">
+        delete from ma_dou where ma_id = #{maId}
+    </delete>
+
+    <delete id="deleteMaDouByIds" parameterType="String">
+        delete from ma_dou where ma_id in 
+        <foreach item="maId" collection="array" open="(" separator="," close=")">
+            #{maId}
+        </foreach>
+    </delete>
+    
+</mapper>

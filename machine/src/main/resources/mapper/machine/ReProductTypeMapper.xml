@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.machine.mapper.ReProductTypeMapper">
+    <resultMap type="MacInfo" id="ProductTypeResult">
+        <result property="maId"    column="id"    />
+        <result property="maCode"    column="code_num"    />
+        <result property="maName"    column="description"    />
+        <result property="maDes"    column="ma_des"    />
+        <result property="maType"    column="ma_type"    />
+        <result property="maOptional"  column="ma_optional"    />
+        <result property="maCreater"  column="ma_Creater"    />
+        <result property="createTime"  column="ma_createDate"    />
+    </resultMap>
+
+    <!--<resultMap id="ProductType" type="com.ruoyi.wmencoder.domain.ProductType">
+        <id column="id" property="id"></id>
+        <result column="description" property="description"></result>
+        <result column="code_num" property="codeNum"></result>
+    </resultMap>-->
+    <sql id="selectMacInfoVo">
+        select id,code_num, description, ma_des, ma_type, ma_optional, ma_creater,ma_createDate from tb_product_type
+    </sql>
+
+    <select id="query" parameterType="MacInfo" resultMap="ProductTypeResult">
+        <include refid="selectMacInfoVo"/>
+        <where>
+            <if test="maCode != null  and maCode != ''"> and code_num like concat('%', #{maCode}, '%')</if>
+            <if test="maName != null  and maName != ''"> and description like concat('%', #{maName}, '%')</if>
+            <if test="maType != null and maType != ''" > and ma_type = #{maType}</if>
+            <if test="maOptional != null  and maOptional != ''"> and ma_optional like concat('%', #{maOptional}, '%')</if>
+        </where>
+    </select>
+
+    <insert id="create" parameterType="MacInfo" useGeneratedKeys="true" keyProperty="maId">
+        insert into tb_product_type
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="maCode != null and maCode != ''">code_num,</if>
+            <if test="maName != null and maName != ''">description,</if>
+            <if test="maDes != null">ma_des,</if>
+            <if test="maType != null">ma_type,</if>
+            <if test="maOptional != null and maOptional != ''">ma_optional,</if>
+            <if test="maCreater != null ">ma_creater,</if>
+            ma_createDate
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="maCode != null and maCode != ''">#{maCode},</if>
+            <if test="maName != null and maName != ''">#{maName},</if>
+            <if test="maDes != null">#{maDes},</if>
+            <if test="maType != null">#{maType},</if>
+            <if test="maOptional != null and maOptional != ''">#{maOptional},</if>
+            <if test="maCreater != null ">#{maCreater},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <delete id="delete">
+        delete from tb_product_type where id=#{id}
+    </delete>
+
+    <!--<update id="update">
+        update tb_product_type set description = #{description},code_num = #{codeNum} where id = #{id}
+    </update>-->
+    <update id="update" parameterType="MacInfo">
+        update tb_product_type
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="maCode != null and maCode != ''">code_num = #{maCode},</if>
+            <if test="maName != null and maName != ''">description = #{maName},</if>
+            <if test="maDes != null">ma_des = #{maDes},</if>
+            <if test="maType != null and maType != ''">ma_type = #{maType},</if>
+            <if test="maOptional != null and maOptional !=''">ma_optional = #{maOptional},</if>
+            <if test="maUpdater != null">ma_updater = #{maUpdater},</if>
+            ma_update = sysdate()
+        </trim>
+        where id= #{maId}
+    </update>
+<!--
+    <select id="query"   parameterType="MacInfo" resultMap="ProductTypeResult">
+        select * from tb_product_type
+    </select>-->
+
+    <select id="detail" resultMap="ProductTypeResult">
+        select * from tb_product_type where id = #{id}
+    </select>
+
+</mapper>

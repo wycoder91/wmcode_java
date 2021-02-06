@@ -3,7 +3,7 @@ package com.ruoyi.machine.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.machine.mapper.MaDouMapper;
+import com.ruoyi.machine.mapper.ReMaDouMapper;
 import com.ruoyi.machine.domain.MaDou;
 import com.ruoyi.machine.service.IMaDouService;
 
@@ -17,7 +17,7 @@ import com.ruoyi.machine.service.IMaDouService;
 public class MaDouServiceImpl implements IMaDouService
 {
     @Autowired
-    private MaDouMapper maDouMapper;
+    private ReMaDouMapper maDouMapper;
 
     /**
      * 查询铲斗类型
