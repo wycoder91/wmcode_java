@@ -1,6 +1,5 @@
 package com.ruoyi.web.controller.machine;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.ruoyi.common.core.page.PageDomain;
@@ -51,14 +50,10 @@ public class MacInfoController extends BaseController
         PageDomain pageDomain = TableSupport.buildPageRequest();
         Integer pageNum = pageDomain.getPageNum();
         Integer pageSize = pageDomain.getPageSize();
-        List<MacInfo> li=new ArrayList<MacInfo>();
-        if(list.size()>0){
         ListPageUtil<MacInfo> listPageUtil = new ListPageUtil<>(list, pageNum, pageSize);
-        li=listPageUtil.getPagedList();
-        }
+        List<MacInfo>  li=listPageUtil.getPagedList();
         //TableDataInfo ee=getDataTable(list);
        // return getDataTable(list);
-        TableDataInfo ee=getDataTableWen(li,list);
        return getDataTableWen(li,list);
     }
 

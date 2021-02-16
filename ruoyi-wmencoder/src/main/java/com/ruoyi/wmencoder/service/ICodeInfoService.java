@@ -65,12 +65,21 @@ public interface ICodeInfoService
      * @return
      */
     public List<CodeInfo> selectCodeInfoListForGenerate(String coderCode);
+
+    /**
+     * 查询重复编码项
+     * @param coderCode
+     * @return
+     */
+    public CodeInfo selectReCodeCoder(String coderCode);
+
     /**
      * 生成整机码及其描述
      * @param configInfoRcv
      * @return
      */
     public CodeInfo generateWmCode(ConfigInfoRcv configInfoRcv);
+
     /**
      * 由详细配置描述loaderInfo查询对应集合
      * @param configInfoRcv

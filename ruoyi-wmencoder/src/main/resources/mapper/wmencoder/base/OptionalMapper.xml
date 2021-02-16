@@ -31,4 +31,8 @@
     <select id="detail" resultMap="Optional">
         select * from tb_optional where id = #{id}
     </select>
+
+    <select id="selectOptionalMaxCategory" resultType="integer">
+        select max(category) from tb_optional
+    </select>
 </mapper>

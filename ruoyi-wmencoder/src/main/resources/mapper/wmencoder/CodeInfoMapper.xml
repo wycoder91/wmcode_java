@@ -37,7 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <include refid="selectCodeInfoVo"/>
         where coder_id = #{coderId}
     </select>
-        
+
+    <select id="selectReCodeCoder" parameterType="String" resultMap="CodeInfoResult">
+        select * from wmcode_info where coder_code = #{coderCode}
+    </select>
+
     <insert id="insertCodeInfo" parameterType="CodeInfo" useGeneratedKeys="true" keyProperty="coderId">
         insert into wmcode_info
         <trim prefix="(" suffix=")" suffixOverrides=",">

@@ -70,6 +70,11 @@ public class CodeGenerateController {
         return configInfoSend;
     }
 
+    @GetMapping("/selectMaxCategory")
+    public int selectOptionalMaxCategory(){
+        return optionalService.selectOptionalMaxCategory();
+    }
+
     @PostMapping("/loaderInfo")
     public CodeInfo generateLoaderInfo(@RequestBody ConfigInfoRcv configInfoRcv){
         CodeInfo codeInfo = new CodeInfo();
@@ -83,7 +88,14 @@ public class CodeGenerateController {
         CodeInfo codeInfo;
         codeInfo = codeInfoService.generateWmCode(configInfoRcv);
         if(codeInfo != null) {
-            codeInfoService.insertCodeInfo(codeInfo);
+            CodeInfo tempCodeInfo = codeInfoService.selectReCodeCoder(codeInfo.getCoderCode());
+            if(tempCodeInfo == null) {
+                codeInfoService.insertCodeInfo(codeInfo);
+            }
+            else{
+                System.out.println("生成后：编码重复 coderCode="+codeInfo.getCoderCode());
+                codeInfo = null;
+            }
         }
         return codeInfo;
     }

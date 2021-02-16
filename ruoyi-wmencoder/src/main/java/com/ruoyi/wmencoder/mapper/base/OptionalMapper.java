@@ -9,5 +9,6 @@ public interface OptionalMapper {
     int delete(int id);
     int update(Optional optional);
     List<Optional> query(Optional optional);
+    Integer selectOptionalMaxCategory();
     Optional detail(int id);
 }

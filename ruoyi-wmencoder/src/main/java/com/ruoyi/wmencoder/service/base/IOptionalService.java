@@ -14,4 +14,6 @@ public interface IOptionalService {
     public List<Optional> query(Optional optional);
 
     public Optional detail(int id);
+
+    public Integer selectOptionalMaxCategory();
 }

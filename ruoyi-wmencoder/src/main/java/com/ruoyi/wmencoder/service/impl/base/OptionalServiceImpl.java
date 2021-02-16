@@ -33,5 +33,9 @@ public class OptionalServiceImpl implements IOptionalService {
     public Optional detail(int id){
         return optionalMapper.detail(id);
     }
+    @Override
+    public Integer selectOptionalMaxCategory(){
+        return optionalMapper.selectOptionalMaxCategory();
+    }
 }
 

@@ -14,34 +14,33 @@ public class WmCodeGenerate {
      */
     public static int optionalSerialNum(List<CodeInfo> list, ConfigInfoRcv configInfoRcv){
         String[] optional = configInfoRcv.getField_optional();
-        //String code16 = configInfoRcv.toStringCode16();
-        int num=1,optionalReNum=0,k;
+        int serialNum=0,serialCompNum,optionalReNum=0,k;
         for(CodeInfo item:list){
-            //if(code16.equals(item.getCoderCode().substring(0,16))){
-                String[] tempLoaderInfo = item.getLoaderInfo().split("\\/");
-                if(tempLoaderInfo.length-8 != optional.length) {
-                    num++;
-                    continue;
-                }
-                for (String s:optional){
-                    for(k = 8; k < tempLoaderInfo.length; k++) {
-                        if (s.equals(tempLoaderInfo[k])) {
-                            optionalReNum++;
-                        }
+            serialCompNum = Integer.parseInt((item.getCoderCode().substring(16)));
+            if(serialCompNum > serialNum){
+                serialNum = serialCompNum;
+            }
+            String[] tempLoaderInfo = item.getLoaderInfo().split("\\/");
+            if(tempLoaderInfo.length-8 != optional.length) {
+                continue;
+            }
+            for (String s:optional){
+                for(k = 8; k < tempLoaderInfo.length; k++) {
+                    if (s.equals(tempLoaderInfo[k])) {
+                        optionalReNum++;
                     }
                 }
-                if(optionalReNum < optional.length){
-                    optionalReNum=0;
-                    num++;
-                    continue;
-                }
-                else{
-                    num=-1; //发现重复配置，即数据库中已有编码无需新增
-                    break;
-                }
-            //}
+            }
+            if(optionalReNum < optional.length){
+                optionalReNum=0;
+                continue;
+            }
+            else{
+                serialNum=-2; //发现重复配置，即数据库中已有编码无需新增
+                break;
+            }
         }
-        return num;
+        return (serialNum+1);
     }
 
     /**
@@ -57,7 +56,7 @@ public class WmCodeGenerate {
             String[] tempLoaderInfo = item.getLoaderInfo().split("\\/");
             if(tempLoaderInfo.length-8 != optional.length) {
                 continue;
-            }
+            } 
             for (String s:optional){
                 for(k = 8; k < tempLoaderInfo.length; k++) {
                     if (s.equals(tempLoaderInfo[k])) {

@@ -66,9 +66,9 @@ public interface CodeInfoMapper
     public List<CodeInfo> selectCodeInfoListForGenerate(String coderCode);
 
     /**
-     * 由详细配置描述loaderInfo查询对应集合
-     * @param loaderInfo
+     * 查询重复编码项
+     * @param coderCode
      * @return
      */
-    public List<CodeInfo> selectCodeInfoListForSearch(String loaderInfo);
+    public CodeInfo selectReCodeCoder(String coderCode);
 }

@@ -104,6 +104,16 @@ public class CodeInfoServiceImpl implements ICodeInfoService
     }
 
     /**
+     * 查询重复编码项
+     * @param coderCode
+     * @return
+     */
+    @Override
+    public CodeInfo selectReCodeCoder(String coderCode){
+        return codeInfoMapper.selectReCodeCoder(coderCode);
+    }
+
+    /**
      * 由详细配置描述loaderInfo查询对应集合
      * @param configInfoRcv
      * @return
@@ -111,6 +121,7 @@ public class CodeInfoServiceImpl implements ICodeInfoService
     @Override
     public CodeInfo searchWmCodeBy(ConfigInfoRcv configInfoRcv){
         String code16 = configInfoRcv.toStringCode16();
+        System.out.println("搜索：code16="+code16);
         List<CodeInfo> list = selectCodeInfoListForGenerate(code16);
         return (WmCodeGenerate.apiSearchWmCode(list,configInfoRcv));
     }
@@ -137,7 +148,7 @@ public class CodeInfoServiceImpl implements ICodeInfoService
 
         serialNum = WmCodeGenerate.optionalSerialNum(list, configInfoRcv);
         if(serialNum == -1){
-            System.out.println("重复配置！");
+            System.out.println("生成中：重复配置！");
             return null;
         }else {
             if (serialNum < 10) {
