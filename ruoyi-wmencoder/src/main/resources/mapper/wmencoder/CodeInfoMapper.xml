@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectCodeInfoList" parameterType="CodeInfo" resultMap="CodeInfoResult">
         <include refid="selectCodeInfoVo"/>
         <where>  
-            <if test="coderCode != null  and coderCode != ''"> and coder_code = #{coderCode}</if>
+            <if test="coderCode != null  and coderCode != ''"> and coder_code like concat('%', #{coderCode}, '%')</if>
             <if test="loaderName != null  and loaderName != ''"> and loader_name like concat('%', #{loaderName}, '%')</if>
             <if test="loaderInfo != null  and loaderInfo != ''"> and loader_info like concat('%', #{loaderInfo}, '%')</if>
             <if test="status != null  and status != ''"> and status = #{status}</if>

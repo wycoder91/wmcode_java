@@ -35,7 +35,7 @@
             <if test="maCode != null  and maCode != ''"> and ma_code like concat('%', #{maCode}, '%')</if>
             <if test="maName != null  and maName != ''"> and description like concat('%', #{maName}, '%')</if>
             <if test="maType != null and maType != ''" > and ma_type = #{maType}</if>
-            <if test="maOptional != null  and maOptional != ''"> and ma_optional like concat('%', #{maOptional}, '%')</if>
+            <if test="maOptional != null  and maOptional != ''"> and ma_optional = #{maOptional}</if>
         </where>
     </select>
 
@@ -80,7 +80,6 @@
             <if test="maType != null and maType != ''">ma_type = #{maType},</if>
             <if test="maOptional != null and maOptional !=''">ma_optional = #{maOptional},</if>
             <if test="maUpdater != null">ma_updater = #{maUpdater},</if>
-            category=#{maType},
             ma_update = sysdate()
         </trim>
         where id= #{maId}
